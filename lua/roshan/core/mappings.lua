@@ -5,7 +5,11 @@ local keymap = vim.keymap -- for conciseness
 
 ----------------- General Keymaps -------------------
 
-local opts = { silent = true }
+local opts = { noremap = true, silent = true }
+
+-- for switching between editor and file manager 
+keymap.set('n', '<C-h>', '<C-w>h', opts )
+keymap.set('n', '<C-l>', '<C-w>l', opts)
 
 -- use jj to exit insert mode
 opts.desc = "Exit insert mode with jj"
@@ -19,8 +23,10 @@ keymap.set("n", "<leader>h", ":nohl<CR>", opts)
 opts.desc = "Save changes"
 keymap.set("n", "<leader>w", ":w<CR>", opts)
 
--- delete single character without copying into register
--- keymap.set("n", "x", '"_x')
+-- Blackhole
+keymap.set("n", "x", '"_x')
+keymap.set("n", "c", '"_c')
+
 opts.desc = "Quit Neovim"
 keymap.set("n", "<leader>q", ":q<CR>", opts)
 
@@ -34,18 +40,6 @@ keymap.set("n", "<leader>+", "<C-a>", opts) -- increment
 opts.desc = "Decrement number"
 keymap.set("n", "<leader>-", "<C-x>", opts) -- decrement
 
--- Bufferline
-opts.desc = "Close current buffer"
-keymap.set("n", "<leader>x", ":bdelete<CR>", opts)
-opts.desc = "Move to Previous Buffer"
-keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
-opts.desc = "Move to Next Buffer"
-keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
-
-
--- NeoTree
-opts.desc = "Open file explorer"
-keymap.set("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", opts)
 
 -- GitSigns
 opts.desc = "Togle current line blame"

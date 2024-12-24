@@ -34,6 +34,9 @@ return {
       end, opts("Open"))
     end
 
+    -- For Opening NvimTree
+    vim.keymap.set("n", "<leader>e", ':NvimTreeFindFileToggle<CR>', {silent=true, noremap=true})
+
     require("nvim-tree").setup({
       on_attach = on_attach,  -- Set the on_attach function
       experimental = {},
