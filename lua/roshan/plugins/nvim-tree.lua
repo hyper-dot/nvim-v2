@@ -13,6 +13,41 @@ return {
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
       end
 
+      -- Use x for cut node
+      vim.keymap.set('n', 'x', api.fs.cut, opts("Cut Node"))
+
+      -- Use r for rename node
+      vim.keymap.set('n', 'r', api.fs.rename, opts("Rename Node"))
+
+      -- Use a to create a new file or directory
+      vim.keymap.set('n', 'a', api.fs.create, opts("Create File/Directory"))
+
+      -- Use y to yank node path to clipboard
+      vim.keymap.set('n', 'y', function()
+        local node = api.tree.get_node_under_cursor()
+        if node then
+          vim.fn.setreg('+', node.absolute_path)
+          print("Yanked " .. node.absolute_path .. " to clipboard")
+        end
+      end, opts("Yank Node Path"))
+
+      -- Use p to paste node
+      vim.keymap.set('n', 'p', api.fs.paste, opts("Paste Node"))
+
+      -- Create menu function
+      local function show_tree_menu()
+        local selection = vim.ui.select(tree_actions, {
+          prompt = "Choose action:",
+          format_item = function(item)
+            return item.name
+          end,
+        }, function(choice)
+          if choice then
+            choice.handler()
+          end
+        end)
+      end
+
       -- Use h to close directory or go to parent directory
       vim.keymap.set('n', 'h', function()
         local node = api.tree.get_node_under_cursor()
@@ -32,11 +67,13 @@ return {
           api.node.open.edit()
         end
       end, opts("Open"))
+
+      -- Add menu mapping (using 'm' key for menu)
+      vim.keymap.set('n', 'm', show_tree_menu, opts("Show Tree Menu"))
     end
 
     -- For Opening NvimTree
     vim.keymap.set("n", "<leader>e", ':NvimTreeFindFileToggle<CR>', {silent=true, noremap=true})
-
     require("nvim-tree").setup({
       on_attach = on_attach,  -- Set the on_attach function
       experimental = {},
@@ -181,7 +218,7 @@ return {
         open_file = {
           quit_on_open = false,
           eject = true,
-          resize_window = false,
+          resize_window = true,
           window_picker = {
             enable = true,
             picker = "default",
@@ -222,7 +259,7 @@ return {
         },
       },
       modified = {
-        enable = false,
+        enable = true,
         show_on_dirs = true,
         show_on_open_dirs = true,
       },
