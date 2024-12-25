@@ -57,12 +57,7 @@ return {
 
 			-- Use h to close directory or go to parent directory
 			vim.keymap.set("n", "h", function()
-				local node = api.tree.get_node_under_cursor()
-				if node.type == "directory" and node.open then
-					api.node.navigate.parent_close()
-				else
-					api.node.navigate.parent()
-				end
+				api.node.navigate.parent_close()
 			end, opts("Close Directory"))
 
 			-- Use l to open file/directory
