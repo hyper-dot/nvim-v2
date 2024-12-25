@@ -4,6 +4,11 @@ return {
 	config = function()
 		require("gitsigns").setup()
 		local key = vim.keymap
-		key.set("n", "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", { desc = "show git blame" })
+		key.set(
+			"n",
+			"<leader>gb",
+			":Gitsigns toggle_current_line_blame<CR>",
+			{ desc = "show git blame", silent = true, noremap = true }
+		)
 	end,
 }
