@@ -31,6 +31,14 @@ return {
         end
       end, opts("Yank Node Path"))
 
+      -- Use d to delete node with confirmation
+      vim.keymap.set('n', 'd', function()
+        local node = api.tree.get_node_under_cursor()
+        if node then
+          api.fs.remove()
+        end
+      end, opts("Delete Node"))
+
       -- Use p to paste node
       vim.keymap.set('n', 'p', api.fs.paste, opts("Paste Node"))
 
