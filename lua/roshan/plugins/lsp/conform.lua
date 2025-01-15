@@ -8,10 +8,10 @@ return {
 				markdown = { "prettierd" },
 				md = { "prettierd" },
 				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "typescript-language-server", "prettierd", stop_after_first = true },
-				typescript = { "typescript-language-server", "prettierd", stop_after_first = true },
-				javascriptreact = { "typescript-language-server", "prettierd", stop_after_first = true },
-				typescriptreact = { "typescript-language-server", "prettierd", stop_after_first = true },
+				javascript = { "ts_ls", "prettierd", stop_after_first = true },
+				typescript = { "ts_ls", "prettierd", stop_after_first = true },
+				javascriptreact = { "ts_ls", "prettierd", stop_after_first = true },
+				typescriptreact = { "ts_ls", "prettierd", stop_after_first = true },
 			},
 		})
 
