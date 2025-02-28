@@ -7,11 +7,14 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettierd" },
 				md = { "prettierd" },
+				html = { "prettierd" },
+				css = { "prettierd" },
+				scss = { "prettierd" },
 				rust = { "rustfmt", lsp_format = "fallback" },
-				javascript = { "ts_ls", "prettierd", stop_after_first = true },
-				typescript = { "ts_ls", "prettierd", stop_after_first = true },
-				javascriptreact = { "ts_ls", "prettierd", stop_after_first = true },
-				typescriptreact = { "ts_ls", "prettierd", stop_after_first = true },
+				javascript = { "tsserver", "prettierd", stop_after_first = true },
+				typescript = { "tsserver", "prettierd", stop_after_first = true },
+				javascriptreact = { "tsserver", "prettierd", stop_after_first = true },
+				typescriptreact = { "tsserver", "prettierd", stop_after_first = true },
 			},
 		})
 
